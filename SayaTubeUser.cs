@@ -13,10 +13,14 @@ public class SayaTubeUser
     public string Username;
 
     public SayaTubeUser(string username)
-    {
+    {        
+        if (username == null || username.Length >= 100 )
+        {
+            throw new ArgumentException("Username melebihi 100 kata atau belum diisi");
+        }
         this.id = GenerateRandomId();
-        this.uploadedVideos = new List<SayaTubeVideo>();
         this.Username = username;
+        this.uploadedVideos = new List<SayaTubeVideo>();
     }
 
     private int GenerateRandomId()
@@ -32,7 +36,13 @@ public class SayaTubeUser
 
     public void AddVideo(SayaTubeVideo video)
     {
-        this.uploadedVideos.Add(video);
+        if (video.title == null)
+        {
+            throw new ArgumentException("Judul video belum diisi atau jumlah penambahan pemutaran melebihi batas");
+        } 
+        {
+            this.uploadedVideos.Add(video);
+        }
     }
 
     public void PrintAllVideoPlaycount()
@@ -40,7 +50,13 @@ public class SayaTubeUser
         Console.WriteLine($"User: {Username}");
         for (int i = 0; i < uploadedVideos.Count; i++)
         {
-            Console.WriteLine($"Video {i+1} judul: " + this.uploadedVideos[i].title);
+            if(i > 7)
+            {
+                Console.WriteLine("Video tidak dapat ditambahkan karena sudah mencapai batas maks yaitu 8 video");
+            } else
+            {
+                Console.WriteLine($"Video {i + 1} judul: " + this.uploadedVideos[i].title);
+            }            
         }
     }
 }

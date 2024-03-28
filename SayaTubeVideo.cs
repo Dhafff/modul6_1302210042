@@ -14,10 +14,10 @@ namespace modul6_1302210042
 
         public SayaTubeVideo(string title)
         {
-            // kondisi untuk title maks panjang char 100 dan tidak null
-            if (title == null || title.Length > 100)
+            // kondisi untuk title maks panjang char 200 atau tidak null
+            if (title == null || title.Length > 200)
             {
-                throw new ArgumentException("Judul video melebihi 100 kata atau belum diisi");
+                throw new ArgumentException("Judul video melebihi 200 kata atau belum diisi");
             }
 
             this.id = GenerateRandomId();
@@ -35,7 +35,7 @@ namespace modul6_1302210042
 
         public void IncreasePlayCount(int hitungPemutaran)
         {
-            if (hitungPemutaran < 0 || hitungPemutaran > 10000)
+            if (hitungPemutaran < 0 || hitungPemutaran > 25000000)
             {
                 throw new ArgumentException("Jumlah penambahan pemutaran tidak valid");
             }
